@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video and Audio Recording</title>
+    <style>
+        video {
+            width: 40%;
+            height: auto;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Video and Audio Recording</h1>
+    <video id="videoElement" autoplay></video>
+    <button id="startButton">Start Recording</button>
+    <button id="stopButton" disabled>Stop Recording</button>
+    <video id="recordedVideo" controls></video>
+
+    <script>
+        let mediaRecorder;
+        let recordedChunks = [];
+
+        // Access the user's camera and microphone
+        async function startStream() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                const videoElement = document.getElementById('videoElement');
+                videoElement.srcObject = stream;
+
+                mediaRecorder = new MediaRecorder(stream);
+                mediaRecorder.ondataavailable = handleDataAvailable;
+                mediaRecorder.onstop = handleStop;
+
+                document.getElementById('startButton').addEventListener('click', startRecording);
+                document.getElementById('stopButton').addEventListener('click', stopRecording);
+            } catch (err) {
+                console.error('Error accessing camera and microphone:', err);
+            }
+        }
+
+        function startRecording() {
+            recordedChunks = [];
+            mediaRecorder.start();
+            console.log('Recording started');
+            document.getElementById('startButton').disabled = true;
+            document.getElementById('stopButton').disabled = false;
+        }
+
+        function stopRecording() {
+            mediaRecorder.stop();
+            console.log('Recording stopped');
+            document.getElementById('startButton').disabled = false;
+            document.getElementById('stopButton').disabled = true;
+        }
+
+        function handleDataAvailable(event) {
+            if (event.data.size > 0) {
+                recordedChunks.push(event.data);
+            }
+        }
+
+        function handleStop() {
+            const blob = new Blob(recordedChunks, { type: 'video/webm' });
+            const recordedVideo = document.getElementById('recordedVideo');
+            recordedVideo.src = URL.createObjectURL(blob);
+
+            // Optionally upload the blob to the server
+            // const formData = new FormData();
+            // formData.append('video', blob);
+            // fetch('/upload-video', { method: 'POST', body: formData });
+        }
+
+        // Start the media stream when the page loads
+        window.addEventListener('load', startStream);
+    </script>
+</body>
+</html>

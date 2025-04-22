@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InterviewPrep Dashboard</title>
+    <link rel="stylesheet" href="/stylesheets/dashboard.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sideimg">
+            <div class="logo">InterviewPrep</div>
+            <ul>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Payment</a></li>
+                <li><a href="#">Help</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="top-bar">
+            <div>
+                <input type="text" placeholder="Search..">
+                <a href="/index" class="home-btn">Home</a>
+            </div>
+            <div class="icons">
+                <span class="bell-icon">🔔</span>
+                <span class="user-icon">👤</span>
+            </div>
+        </div>
+        <div class="accordion my-4" id="accordionExample">
+            <!-- Dynamic content will be inserted here -->
+        </div>
+        
+        <div class="domain-selection">
+            <h3>Select Domain for Assessment</h3>
+            <div class="domain-options">
+                <select id="domainSelect" class="form-select">
+                    <option value="">Choose a domain...</option>
+                    <option value="Data Science">Data Science</option>
+                    <option value="Machine Learning">Machine Learning</option>
+                    <option value="Web Development">Web Development</option>
+                    <option value="Mobile Development">Mobile Development</option>
+                    <option value="Cloud Computing">Cloud Computing</option>
+                    <option value="DevOps">DevOps</option>
+                    <option value="Cybersecurity">Cybersecurity</option>
+                    <option value="Software Engineering">Software Engineering</option>
+                </select>
+            </div>
+        </div>
+        
+        <button class="home-btn" onclick="startAssessment()">Start Assessment</button>
+    </div>
+    <script src="/javascripts/dashboard.js"></script>
+</body>
+</html>

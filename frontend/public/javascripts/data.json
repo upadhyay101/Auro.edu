@@ -1,0 +1,191 @@
+[
+    [
+        {
+            "question": "How do you handle exceptions in Python?",
+            "answer": "video exception handling and Python using try and catch block",
+            "score": 3
+        },
+        {
+            "question": "Explain the purpose of 'os.path.relpath()' function in Python.",
+            "answer": "relative bath is used to find the relative path of A file in the OS",
+            "score": 2
+        },
+        {
+            "question": "Explain the use of 'os.path.walk()' function in Python.",
+            "answer": "who is that part that work function will",
+            "score": 0
+        },
+        {
+            "question": "What is the purpose of 'requests' module in Python?",
+            "answer": "who is that part that work function will",
+            "score": 0
+        },
+        {
+            "question": "How do you handle HTTP requests in Python?",
+            "answer": "using service and Python and http library be hand",
+            "score": 3
+        }
+    ],
+    [
+        {
+            "question": "How do you handle exceptions in Python?",
+            "answer": "video exception handling and Python using try and catch block",
+            "score": 3
+        },
+        {
+            "question": "Explain the purpose of 'os.path.relpath()' function in Python.",
+            "answer": "relative bath is used to find the relative path of A file in the OS",
+            "score": 3
+        },
+        {
+            "question": "Explain the use of 'os.path.walk()' function in Python.",
+            "answer": "who is that part that work function will",
+            "score": 4
+        },
+        {
+            "question": "What is the purpose of 'requests' module in Python?",
+            "answer": "who is that part that work function will",
+            "score": 0
+        },
+        {
+            "question": "How do you handle HTTP requests in Python?",
+            "answer": "using service and Python and http library be hand",
+            "score": 3
+        }
+    ],
+    [
+        {
+            "question": "How do you handle exceptions in Python?",
+            "answer": "video exception handling and Python using try and catch block",
+            "score": 3
+        },
+        {
+            "question": "Explain the purpose of 'os.path.relpath()' function in Python.",
+            "answer": "relative bath is used to find the relative path of A file in the OS",
+            "score": 3
+        },
+        {
+            "question": "Explain the use of 'os.path.walk()' function in Python.",
+            "answer": "who is that part that work function will",
+            "score": 5
+        },
+        {
+            "question": "What is the purpose of 'requests' module in Python?",
+            "answer": "who is that part that work function will",
+            "score": 0
+        },
+        {
+            "question": "How do you handle HTTP requests in Python?",
+            "answer": "using service and Python and http library be hand",
+            "score": 3
+        }
+    ],
+    [
+        {
+            "question": "How do you handle exceptions in Python?",
+            "answer": "video exception handling and Python using try and catch block",
+            "score": 3
+        },
+        {
+            "question": "Explain the purpose of 'os.path.relpath()' function in Python.",
+            "answer": "relative bath is used to find the relative path of A file in the OS",
+            "score": 2
+        },
+        {
+            "question": "Explain the use of 'os.path.walk()' function in Python.",
+            "answer": "who is that part that work function will",
+            "score": 1
+        },
+        {
+            "question": "What is the purpose of 'requests' module in Python?",
+            "answer": "who is that part that work function will",
+            "score": 1
+        },
+        {
+            "question": "How do you handle HTTP requests in Python?",
+            "answer": "using service and Python and http library be hand",
+            "score": 3
+        }
+    ],
+    [
+        {
+            "question": "How do you handle exceptions in Python?",
+            "answer": "video exception handling and Python using try and catch block",
+            "score": 3
+        },
+        {
+            "question": "Explain the purpose of 'os.path.relpath()' function in Python.",
+            "answer": "relative bath is used to find the relative path of A file in the OS",
+            "score": 3
+        },
+        {
+            "question": "Explain the use of 'os.path.walk()' function in Python.",
+            "answer": "who is that part that work function will",
+            "score": 0
+        },
+        {
+            "question": "What is the purpose of 'requests' module in Python?",
+            "answer": "who is that part that work function will",
+            "score": 0
+        },
+        {
+            "question": "How do you handle HTTP requests in Python?",
+            "answer": "using service and Python and http library be hand",
+            "score": 3
+        }
+    ],
+    [
+        {
+            "question": "How do you handle exceptions in Python?",
+            "answer": "video exception handling and Python using try and catch block",
+            "score": 3
+        },
+        {
+            "question": "Explain the purpose of 'os.path.relpath()' function in Python.",
+            "answer": "relative bath is used to find the relative path of A file in the OS",
+            "score": 5
+        },
+        {
+            "question": "Explain the use of 'os.path.walk()' function in Python.",
+            "answer": "who is that part that work function will",
+            "score": 0
+        },
+        {
+            "question": "What is the purpose of 'requests' module in Python?",
+            "answer": "who is that part that work function will",
+            "score": 5
+        },
+        {
+            "question": "How do you handle HTTP requests in Python?",
+            "answer": "using service and Python and http library be hand",
+            "score": 3
+        }
+    ],
+    [
+        {
+            "question": "How do you handle exceptions in Python?",
+            "answer": "video exception handling and Python using try and catch block",
+            "score": 4
+        },
+        {
+            "question": "Explain the purpose of 'os.path.relpath()' function in Python.",
+            "answer": "relative bath is used to find the relative path of A file in the OS",
+            "score": 3
+        },
+        {
+            "question": "Explain the use of 'os.path.walk()' function in Python.",
+            "answer": "who is that part that work function will",
+            "score": 0
+        },
+        {
+            "question": "What is the purpose of 'requests' module in Python?",
+            "answer": "who is that part that work function will",
+            "score": 2
+        },
+        {
+            "question": "How do you handle HTTP requests in Python?",
+            "answer": "using service and Python and http library be hand",
+            "score": 3
+        }
+    ]
+]

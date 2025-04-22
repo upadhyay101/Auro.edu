@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Test</title>
+</head>
+<body>
+    <h1>Click the button to start the test</h1>
+    
+    <button onclick="startTest()">Start Test</button>
+
+    <script>
+        function startTest() {
+            alert('The test has started!');
+            // Redirect to the route that renders the test.ejs file
+            window.location.href = '/testing';
+        }
+    </script>
+</body>
+</html>

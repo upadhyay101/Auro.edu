@@ -1,0 +1,358 @@
+[
+  {
+    "question": "What is Python?"
+  },
+  {
+    "question": "What are the advantages of using Python for web development?"
+  },
+  {
+    "question": "Explain the differences between Python 2.x and Python 3.x."
+  },
+  {
+    "question": "What are the different data types in Python?"
+  },
+  {
+    "question": "What is PEP 8?"
+  },
+  {
+    "question": "Explain list comprehensions in Python."
+  },
+  {
+    "question": "What is the difference between a tuple and a list in Python?"
+  },
+  {
+    "question": "How do you handle exceptions in Python?"
+  },
+  {
+    "question": "Explain the use of 'yield' keyword in Python."
+  },
+  {
+    "question": "What is the purpose of the 'self' keyword in Python?"
+  },
+  {
+    "question": "What are decorators in Python?"
+  },
+  {
+    "question": "What is the difference between '==' and 'is' in Python?"
+  },
+  {
+    "question": "Explain the difference between 'append()' and 'extend()' methods in Python."
+  },
+  {
+    "question": "What is a Python module?"
+  },
+  {
+    "question": "How do you open and close a file in Python?"
+  },
+  {
+    "question": "What is the purpose of '__init__' method in Python classes?"
+  },
+  {
+    "question": "Explain the use of 'lambda' functions in Python."
+  },
+  {
+    "question": "What is a dictionary in Python?"
+  },
+  {
+    "question": "How do you perform unit testing in Python?"
+  },
+  {
+    "question": "Explain the use of 'map()' function in Python."
+  },
+  {
+    "question": "What is the purpose of 'pass' statement in Python?"
+  },
+  {
+    "question": "What is the 'global' keyword used for in Python?"
+  },
+  {
+    "question": "Explain the use of 'super()' function in Python."
+  },
+  {
+    "question": "What is a generator in Python?"
+  },
+  {
+    "question": "How do you create a virtual environment in Python?"
+  },
+  {
+    "question": "Explain the difference between 'deep copy' and 'shallow copy' in Python."
+  },
+  {
+    "question": "What is the purpose of 're' module in Python?"
+  },
+  {
+    "question": "How do you perform multi-threading in Python?"
+  },
+  {
+    "question": "Explain the purpose of 'join()' method in Python.",
+    "answer": "Hello."
+  },
+  {
+    "question": "What are Python's built-in data types?"
+  },
+  {
+    "question": "How do you install external packages in Python?"
+  },
+  {
+    "question": "What is the purpose of 'zip()' function in Python?"
+  },
+  {
+    "question": "Explain the difference between 'staticmethod' and 'classmethod' in Python."
+  },
+  {
+    "question": "What is the purpose of 're.compile()' method in Python?"
+  },
+  {
+    "question": "How do you handle concurrency in Python?"
+  },
+  {
+    "question": "What is the difference between 'os.path.join()' and 'os.sep()' in Python?"
+  },
+  {
+    "question": "What is the use of 'isinstance()' function in Python?"
+  },
+  {
+    "question": "Explain the use of 'pickle' module in Python."
+  },
+  {
+    "question": "What is the purpose of 'os.environ' in Python?"
+  },
+  {
+    "question": "How do you perform file I/O operations in Python?"
+  },
+  {
+    "question": "Explain the use of 'set()' function in Python."
+  },
+  {
+    "question": "What is the 'global interpreter lock' (GIL) in Python?"
+  },
+  {
+    "question": "What is the purpose of 'os.path.exists()' function in Python?"
+  },
+  {
+    "question": "How do you create and use a class in Python?"
+  },
+  {
+    "question": "Explain the purpose of 'del' statement in Python."
+  },
+  {
+    "question": "What is the difference between 'filter()' and 'reduce()' functions in Python?"
+  },
+  {
+    "question": "What are metaclasses in Python?"
+  },
+  {
+    "question": "Explain the use of 'enumerate()' function in Python."
+  },
+  {
+    "question": "What is the purpose of 'dir()' function in Python?"
+  },
+  {
+    "question": "How do you handle regular expressions in Python?"
+  },
+  {
+    "question": "Explain the purpose of 'isalpha()' method in Python."
+  },
+  {
+    "question": "What are Python decorators used for?"
+  },
+  {
+    "question": "What is the purpose of 'asyncio' module in Python?"
+  },
+  {
+    "question": "Explain the use of 'next()' function in Python."
+  },
+  {
+    "question": "What is the difference between 'iter()' and 'next()' functions in Python?"
+  },
+  {
+    "question": "How do you perform database operations in Python?"
+  },
+  {
+    "question": "Explain the purpose of 'os.path.isdir()' function in Python."
+  },
+  {
+    "question": "What are 'named tuples' in Python?"
+  },
+  {
+    "question": "Explain the use of 'logging' module in Python."
+  },
+  {
+    "question": "What is the difference between 'os.path.exists()' and 'os.path.isfile()' in Python?"
+  },
+  {
+    "question": "How do you handle JSON data in Python?"
+  },
+  {
+    "question": "Explain the purpose of 'locals()' function in Python."
+  },
+  {
+    "question": "What are the different ways to create a thread in Python?"
+  },
+  {
+    "question": "What is the purpose of 'os.path.basename()' function in Python?"
+  },
+  {
+    "question": "Explain the use of 'collections' module in Python."
+  },
+  {
+    "question": "What is the purpose of 'os.path.abspath()' function in Python?"
+  },
+  {
+    "question": "How do you perform sorting in Python?",
+    "answer": "Hello."
+  },
+  {
+    "question": "Explain the purpose of 'ast.literal_eval()' function in Python."
+  },
+  {
+    "question": "What are 'context managers' in Python?"
+  },
+  {
+    "question": "How do you handle XML data in Python?"
+  },
+  {
+    "question": "Explain the use of 'itertools' module in Python."
+  },
+  {
+    "question": "What is the purpose of 'os.path.split()' function in Python?"
+  },
+  {
+    "question": "How do you handle time and date in Python?"
+  },
+  {
+    "question": "Explain the use of 'sys' module in Python."
+  },
+  {
+    "question": "What is the purpose of 'os.path.splitext()' function in Python?"
+  },
+  {
+    "question": "How do you handle XML-RPC in Python?"
+  },
+  {
+    "question": "Explain the use of 'zipfile' module in Python."
+  },
+  {
+    "question": "What is the purpose of 'itertools.chain()' function in Python?"
+  },
+  {
+    "question": "How do you handle command line arguments in Python?"
+  },
+  {
+    "question": "Explain the use of 'os.path.getsize()' function in Python."
+  },
+  {
+    "question": "What is the purpose of 'shutil' module in Python?"
+  },
+  {
+    "question": "How do you handle binary data in Python?"
+  },
+  {
+    "question": "Explain the use of 'os.path.walk()' function in Python."
+  },
+  {
+    "question": "What is the difference between 'os.path.realpath()' and 'os.path.abspath()' in Python?"
+  },
+  {
+    "question": "How do you handle network programming in Python?"
+  },
+  {
+    "question": "Explain the purpose of 'cProfile' module in Python."
+  },
+  {
+    "question": "What is the purpose of 'os.path.commonprefix()' function in Python?"
+  },
+  {
+    "question": "How do you handle memory management in Python?",
+    "answer": "Hello."
+  },
+  {
+    "question": "Explain the use of 'os.path.expanduser()' function in Python."
+  },
+  {
+    "question": "What is the purpose of 'socket' module in Python?"
+  },
+  {
+    "question": "How do you handle subprocesses in Python?",
+    "answer": "Hello."
+  },
+  {
+    "question": "Explain the use of 'os.path.lexists()' function in Python."
+  },
+  {
+    "question": "What is the difference between 'os.path.realpath()' and 'os.path.abspath()' in Python?"
+  },
+  {
+    "question": "How do you handle concurrent.futures in Python?"
+  },
+  {
+    "question": "Explain the purpose of 'os.path.relpath()' function in Python."
+  },
+  {
+    "question": "What is the use of 'asyncio.wait()' function in Python?"
+  },
+  {
+    "question": "How do you handle multiprocessing in Python?"
+  },
+  {
+    "question": "Explain the use of 'os.path.samefile()' function in Python.",
+    "answer": "Hello."
+  },
+  {
+    "question": "What is the purpose of 'sys.argv' in Python?"
+  },
+  {
+    "question": "How do you handle HTTP requests in Python?"
+  },
+  {
+    "question": "Explain the use of 'os.path.pathsep()' function in Python."
+  },
+  {
+    "question": "What is the purpose of 'importlib' module in Python?"
+  },
+  {
+    "question": "How do you handle SSL/TLS in Python?"
+  },
+  {
+    "question": "Explain the purpose of 'os.path.getctime()' function in Python."
+  },
+  {
+    "question": "What is the difference between 'os.path.realpath()' and 'os.path.abspath()' in Python?"
+  },
+  {
+    "question": "How do you handle JSON-RPC in Python?"
+  },
+  {
+    "question": "Explain the use of 'os.path.getmtime()' function in Python."
+  },
+  {
+    "question": "What is the purpose of 'functools' module in Python?"
+  },
+  {
+    "question": "How do you handle CGI programming in Python?"
+  },
+  {
+    "question": "Explain the use of 'os.path.getatime()' function in Python."
+  },
+  {
+    "question": "What is the purpose of 'urllib' module in Python?"
+  },
+  {
+    "question": "How do you handle WSGI programming in Python?"
+  },
+  {
+    "question": "Explain the use of 'os.path.getsize()' function in Python."
+  },
+  {
+    "question": "What is the purpose of 'requests' module in Python?"
+  },
+  {
+    "question": "How do you handle web scraping in Python?"
+  },
+  {
+    "question": "Explain the use of 'os.path.sameopenfile()' function in Python."
+  },
+  {
+    "question": "What is the difference between 'os.path.realpath()' and 'os.path.abspath()' in Python?"
+  }
+]

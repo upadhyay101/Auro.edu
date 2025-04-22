@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech to Text</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #6C63FF;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            color: #333;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .timer {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #6C63FF;
+        }
+
+        .speaker {
+            display: flex;
+            justify-content: space-between;
+            width: 13rem;
+            margin: 1rem auto;
+            background-color: #f0f0f0;
+            box-shadow: 0 0 13px #0000003d;
+            border-radius: 5px;
+            padding: 0.5rem;
+        }
+
+        #action {
+            color: #6C63FF;
+            font-weight: 800;
+            padding: 0;
+        }
+
+        button {
+            border: 2px solid #6C63FF;
+            background-color: #ffffff;
+            color: #6C63FF;
+            font-weight: 800;
+            padding: 0 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #6C63FF;
+            color: #ffffff;
+        }
+
+        #output.hide {
+            display: none;
+        }
+
+        #question {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="timer" id="timer">30</div> <!-- Timer display -->
+        <div id="question"></div> <!-- Division for displaying the question -->
+        <div class="speaker">
+            <p id="action"></p>
+            <button id="speechButton" onclick="toggleSpeechRecog()">Start</button>
+        </div>
+        <h3 id="output" class="hide"></h3>
+    </div>
+    <script>
+        let isRecognizing = false;
+        let recognition = new webkitSpeechRecognition();
+        let output = document.getElementById('output');
+        let action = document.getElementById('action');
+        let questionDiv = document.getElementById('question'); // Question division
+        let timerDiv = document.getElementById('timer'); // Timer division
+        let button = document.getElementById('speechButton');
+        let questions = [];
+        let currentQuestionIndex = 0;
+        let timeoutId = null;
+        let timerId = null;
+        let timeLeft = 30; // 30 seconds for each question
+
+        recognition.continuous = true;
+
+        recognition.onstart = () => {
+            action.innerHTML = "Listening...";
+            button.innerHTML = "Stop";
+
+            // Set a timeout for no speech input
+            timeoutId = setTimeout(() => {
+                recognition.stop();
+                questions[currentQuestionIndex].answer = ""; // Record blank answer
+                currentQuestionIndex++;
+                if (currentQuestionIndex < questions.length) {
+                    askQuestion(currentQuestionIndex);
+                } else {
+                    saveAnswers();
+                }
+            }, 30000); // 30 seconds timeout
+        }
+
+        recognition.onresult = (event) => {
+            clearTimeout(timeoutId); // Clear the timeout if speech is detected
+            var transcript = event.results[0][0].transcript;
+            output.innerHTML = transcript;
+            output.classList.remove("hide");
+            action.innerHTML = "";
+
+            // Save the answer for the current question
+            questions[currentQuestionIndex].answer = transcript;
+
+            // Move to the next question
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                askQuestion(currentQuestionIndex);
+            } else {
+                saveAnswers();
+            }
+        }
+
+        recognition.onend = () => {
+            action.innerHTML = "";
+            button.innerHTML = "Start";
+            isRecognizing = false;
+        }
+
+        function toggleSpeechRecog() {
+            if (isRecognizing) {
+                recognition.stop();
+            } else {
+                recognition.start();
+                isRecognizing = true;
+            }
+        }
+
+        function fetchQuestions() {
+            fetch('/questions')
+                .then(response => response.json())
+                .then(data => {
+                    questions = getRandomQuestions(data, 5);
+                    askQuestion(currentQuestionIndex);
+                })
+                .catch(error => {
+                    console.error('Error fetching questions:', error);
+                });
+        }
+
+        function getRandomQuestions(arr, num) {
+            let shuffled = arr.sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, num);
+        }
+
+        function askQuestion(index) {
+            if (index < questions.length) {
+                questionDiv.innerHTML = `Question: ${questions[index].question}`; // Update question division
+                resetTimer();
+                startTimer();
+                toggleSpeechRecog();
+            }
+        }
+
+        function saveAnswers() {
+            fetch('/save-answer', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(questions)
+            })
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        function startTimer() {
+            timeLeft = 30; // Reset time for each question
+            timerDiv.innerHTML = timeLeft;
+            timerId = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(timerId);
+                } else {
+                    timeLeft--;
+                    timerDiv.innerHTML = timeLeft;
+                }
+            }, 1000);
+        }
+
+        function resetTimer() {
+            clearInterval(timerId);
+            timerDiv.innerHTML = 30; // Reset display to 30
+        }
+
+        // Start the process by fetching questions when the page loads
+        window.onload = fetchQuestions;
+    </script>
+</body>
+
+</html>

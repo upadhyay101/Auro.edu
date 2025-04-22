@@ -1,0 +1,22 @@
+[
+  {
+    "question": "How do you handle JSON data in Python?",
+    "answer": ""
+  },
+  {
+    "question": "How do you perform sorting in Python?",
+    "answer": ""
+  },
+  {
+    "question": "How do you handle SSL/TLS in Python?",
+    "answer": ""
+  },
+  {
+    "question": "What is the difference between 'os.path.realpath()' and 'os.path.abspath()' in Python?",
+    "answer": ""
+  },
+  {
+    "question": "How do you handle multiprocessing in Python?",
+    "answer": ""
+  }
+]

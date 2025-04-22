@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech to Text</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #6C63FF;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            color: #333;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+
+        .camera-window {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 320px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            z-index: 1000;
+        }
+
+        #videoFeed {
+            width: 100%;
+            height: 240px;
+            border-radius: 8px;
+            background-color: #000;
+            margin-bottom: 5px;
+        }
+
+        .analyzing-text {
+            text-align: center;
+            color: #333;
+            font-size: 14px;
+            margin-top: 5px;
+            padding: 5px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+        }
+
+        .timer {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #6C63FF;
+        }
+
+        .speaker {
+            display: flex;
+            justify-content: space-between;
+            width: 13rem;
+            margin: 1rem auto;
+            background-color: #f0f0f0;
+            box-shadow: 0 0 13px #0000003d;
+            border-radius: 5px;
+            padding: 0.5rem;
+        }
+
+        #action {
+            color: #6C63FF;
+            font-weight: 800;
+            padding: 0;
+        }
+
+        button {
+            border: 2px solid #6C63FF;
+            background-color: #ffffff;
+            color: #6C63FF;
+            font-weight: 800;
+            padding: 0 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #6C63FF;
+            color: #ffffff;
+        }
+
+        #output.hide {
+            display: none;
+        }
+
+        #question {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        #transcript {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            color: #333;
+            text-align: left;
+            min-height: 100px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="camera-window">
+        <video id="videoFeed" autoplay playsinline></video>
+        <div class="analyzing-text">Initializing...</div>
+    </div>
+
+    <div class="container">
+        <div class="timer" id="timer">30</div>
+        <div id="question"></div>
+        <div class="speaker">
+            <p id="action">Click Start</p>
+            <button id="speechButton" onclick="toggleSpeechRecog()">Start</button>
+        </div>
+        <div id="transcript" class="hide"></div>
+    </div>
+
+    <script>
+        let isRecognizing = false;
+        let recognition = new webkitSpeechRecognition();
+        let action = document.getElementById('action');
+        let questionDiv = document.getElementById('question');
+        let timerDiv = document.getElementById('timer');
+        let button = document.getElementById('speechButton');
+        let transcript = document.getElementById('transcript');
+        let questions = [];
+        let currentQuestionIndex = 0;
+        let timeoutId = null;
+        let timerId = null;
+        let timeLeft = 30;
+        let selectedDomain = sessionStorage.getItem('selectedDomain') || 'software';
+
+        // Initialize video feed
+        async function initializeCamera() {
+            try {
+                const video = document.getElementById('videoFeed');
+                const stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { 
+                        width: 320,
+                        height: 240,
+                        facingMode: "user"
+                    } 
+                });
+                video.srcObject = stream;
+                
+                // Start the analysis once camera is ready
+                video.onloadedmetadata = () => {
+                    startAnalysis();
+                    document.querySelector('.analyzing-text').textContent = 'Analysis starting...';
+                };
+            } catch (err) {
+                console.error('Error accessing camera:', err);
+                document.querySelector('.analyzing-text').textContent = 'Camera access denied';
+            }
+        }
+
+        // Start analysis with backend
+        async function startAnalysis() {
+            try {
+                const response = await fetch('http://localhost:8000/start_analysis', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ domain: selectedDomain })
+                });
+                const data = await response.json();
+                if (data.status === 'success') {
+                    document.querySelector('.analyzing-text').textContent = 'Analysis active';
+                    startEmotionPolling();
+                }
+            } catch (error) {
+                console.error('Error starting analysis:', error);
+                document.querySelector('.analyzing-text').textContent = 'Analysis failed to start';
+            }
+        }
+
+        // Poll for emotion updates
+        function startEmotionPolling() {
+            setInterval(async () => {
+                try {
+                    const response = await fetch('http://localhost:8000/analysis_status');
+                    const data = await response.json();
+                    if (data.emotion_percentages) {
+                        const emotions = Object.entries(data.emotion_percentages);
+                        const maxEmotion = emotions.reduce((a, b) => a[1] > b[1] ? a : b);
+                        document.querySelector('.analyzing-text').textContent = 
+                            `Current Emotion: ${maxEmotion[0]} (${Math.round(maxEmotion[1])}%)`;
+                    }
+                } catch (error) {
+                    console.error('Error polling emotions:', error);
+                }
+            }, 1000);
+        }
+
+        // Speech recognition setup
+        recognition.continuous = true;
+        recognition.interimResults = true;
+
+        recognition.onstart = () => {
+            action.textContent = "Listening...";
+            button.textContent = "Stop";
+            transcript.classList.remove('hide');
+            startTimer();
+        };
+
+        recognition.onend = () => {
+            isRecognizing = false;
+            action.textContent = "Click Start";
+            button.textContent = "Start";
+            stopTimer();
+        };
+
+        recognition.onresult = (event) => {
+            const current = event.resultIndex;
+            const result = event.results[current];
+            const text = result[0].transcript;
+            
+            if (result.isFinal) {
+                transcript.textContent = text;
+            }
+        };
+
+        // Timer functions
+        function startTimer() {
+            timeLeft = 30;
+            updateTimer();
+            timerId = setInterval(updateTimer, 1000);
+        }
+
+        function updateTimer() {
+            if (timeLeft <= 0) {
+                stopTimer();
+                if (isRecognizing) {
+                    toggleSpeechRecog();
+                }
+                return;
+            }
+            timerDiv.textContent = timeLeft;
+            timeLeft--;
+        }
+
+        function stopTimer() {
+            clearInterval(timerId);
+            timerDiv.textContent = "30";
+        }
+
+        // Toggle speech recognition
+        function toggleSpeechRecog() {
+            if (!isRecognizing) {
+                recognition.start();
+                isRecognizing = true;
+            } else {
+                recognition.stop();
+                isRecognizing = false;
+            }
+        }
+
+        // Fetch questions on load
+        async function fetchQuestions() {
+            try {
+                const response = await fetch('http://localhost:8000/next_question', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ domain: selectedDomain })
+                });
+                const data = await response.json();
+                if (data.question) {
+                    questionDiv.textContent = data.question;
+                }
+            } catch (error) {
+                console.error('Error fetching question:', error);
+                questionDiv.textContent = 'Error loading question';
+            }
+        }
+
+        // Initialize everything when page loads
+        window.onload = function() {
+            initializeCamera();
+            fetchQuestions();
+        };
+    </script>
+</body>
+
+</html>

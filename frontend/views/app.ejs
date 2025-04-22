@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Detection</title>
+</head>
+<body>
+    <h1>Emotion Detection</h1>
+    <div>
+        <img src="{{ url_for('video_feed') }}" width="640" height="480">
+    </div>
+    <div id="emotion-data"></div>
+    <button id="stop-button">Stop Recording</button>
+    
+    <script>
+        async function fetchEmotionData() {
+            const response = await fetch('/emotion_data');
+            const data = await response.json();
+            const emotionDataDiv = document.getElementById('emotion-data');
+            emotionDataDiv.innerHTML = '';
+            for (const [emotion, percentage] of Object.entries(data)) {
+                emotionDataDiv.innerHTML += <p>${emotion}: ${percentage.toFixed(2)}%</p>;
+            }
+        }
+
+        setInterval(fetchEmotionData, 5000); // Update every 5 seconds
+
+        document.getElementById('stop-button').addEventListener('click', async function () {
+            await fetch('/stop_recording', { method: 'POST' });
+        });
+
+        window.addEventListener("beforeunload", async function (event) {
+            await fetch('/stop_recording', { method: 'POST' });
+        });
+    </script>
+</body>
+</html>
